@@ -8,6 +8,8 @@ public class Player_Management : MonoBehaviour
     public Material baseMaterial;
     public Material newMaterial;
 
+    public GameObject MenuGanaste;
+
     private bool conBarrera;
 
     private void OnTriggerEnter(Collider other)
@@ -16,6 +18,13 @@ public class Player_Management : MonoBehaviour
         {
             GetComponent<Renderer>().material = newMaterial;
             conBarrera = true;
+        }
+        if (other.CompareTag("Portal"))
+        {
+            MenuGanaste.SetActive(true);
+            Time.timeScale = 0f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
