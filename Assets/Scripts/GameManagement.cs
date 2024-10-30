@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManagement : MonoBehaviour
 {
+    public GameObject player;
+    public GameObject MenuLost;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,7 @@ public class GameManagement : MonoBehaviour
     void Update()
     {
         Restart();
+        CheckOnPlayer();
     }
     private void Restart()
     {
@@ -22,6 +25,17 @@ public class GameManagement : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
+        }
+    }
+
+    private void CheckOnPlayer()
+    {
+        if(player==null)
+        {
+            MenuLost.SetActive(true);
+            Time.timeScale = 0f;           
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }

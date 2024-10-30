@@ -6,6 +6,8 @@ TagManager:
   tags:
   - piso
   - barrierBuffer
+  - enemigo
+  - Portal
   layers:
   - Default
   - TransparentFX
