@@ -77,9 +77,6 @@ public class TurretController : MonoBehaviour
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.velocity = direction * 10f; // Adjust speed as needed
     }
-
-
-
     void OnDrawGizmosSelected()
     {
         // dibuja el rango

@@ -12,7 +12,6 @@ public class GameManagement : MonoBehaviour
     {
         
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -27,7 +26,6 @@ public class GameManagement : MonoBehaviour
 
         }
     }
-
     private void CheckOnPlayer()
     {
         if(player==null)
