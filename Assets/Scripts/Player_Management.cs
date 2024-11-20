@@ -10,8 +10,10 @@ public class Player_Management : MonoBehaviour
     public Material newMaterial;
     public GameObject MenuGanaste;
 
+    public int vida = 1;
     public float intervaloDeActivacion = 1f;
     private float ultimaActivacion = 0f;
+
     private bool conBarrera;
     void Start()
     {
@@ -24,6 +26,10 @@ public class Player_Management : MonoBehaviour
         {
             GetComponent<Renderer>().material = newMaterial;
             conBarrera = true;
+            if(vida<2)
+            {
+                vida ++;
+            }
         }
         if(other.CompareTag("dashBuff"))
         {
@@ -44,19 +50,19 @@ public class Player_Management : MonoBehaviour
         {
             if (collision.collider.CompareTag("enemigo"))
             {
-         
+                vida--;
+
                 if (conBarrera)
                 {
-                    Collider.Destroy(gameObject);
-
                     conBarrera = false;
                     GetComponent<Renderer>().material = baseMaterial;
+                    Destroy(collision.collider.gameObject);
                 }
-                else
+                else if(vida<=0)
                 {
                     Destroy(gameObject);
-
                 }
+
                 ultimaActivacion = Time.time;
             }
         }

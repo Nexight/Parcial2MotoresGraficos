@@ -5292,6 +5292,8 @@ MonoBehaviour:
   baseMaterial: {fileID: 2100000, guid: 45a6fd5e6cfc8e84cbca84baab494863, type: 2}
   newMaterial: {fileID: 2100000, guid: 394cc55e9c8728741a0ef0b8ac19c28c, type: 2}
   MenuGanaste: {fileID: 1434587160}
+  vida: 1
+  intervaloDeActivacion: 0.5
 --- !u!1001 &1953016240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6451,6 +6453,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Torreta estatica
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099030373938238293, guid: 3519f19099de02e4cb87982e8b19fcda,
+        type: 3}
+      propertyPath: m_TagString
+      value: enemigo
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -4910587686481899976, guid: 3519f19099de02e4cb87982e8b19fcda, type: 3}
