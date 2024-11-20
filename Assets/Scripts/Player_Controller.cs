@@ -14,18 +14,21 @@ public class Player_Controller : MonoBehaviour
     public float gravity = 10f;
     public float lookSpeed = 2f;
     public float lookXLimit = 45f;
-    //public float defaultHeight = 2f;
-    //public float crouchHeight = 1f;
-    //public float crouchSpeed = 3f;
+    public float dashDistance = 5f;
+    public float dashCooldown = 1f;
+    public float dashDuration = 0.2f;
 
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
     private CharacterController characterController;
+    private Vector3 dashDirection;
+    private float dashTimer = 0f;
+    private float cooldownTimer = 0f;
 
     private bool canMove = true;
+    private bool isDashing = false;
+    private bool dashEnabled = false;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent <CharacterController>();
@@ -59,20 +62,6 @@ public class Player_Controller : MonoBehaviour
             moveDirection.y -= gravity * Time.deltaTime;
         }
 
-        //if (Input.GetKey(KeyCode.R) && canMove)
-        //{
-        //    characterController.height = crouchHeight;
-        //    walkSpeed = crouchSpeed;
-        //    runSpeed = crouchSpeed;
-
-        //}
-        //else
-        //{
-        //    characterController.height = defaultHeight;
-        //    walkSpeed = 6f;
-        //    runSpeed = 12f;
-        //}
-
         characterController.Move(moveDirection * Time.deltaTime);
 
         if (canMove&&!MenuPausa.GameIsPause)
@@ -82,14 +71,44 @@ public class Player_Controller : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+        if(cooldownTimer > 0)
+        {
+            cooldownTimer -= Time.deltaTime;
+        }
+        if(isDashing)
+        {
+            Dash();
+            return;
+        }
+
+        if(Input.GetKeyDown(KeyCode.E)&& dashEnabled && cooldownTimer <= 0)
+        {
+            StartDash();
+        }
+
+    }
+    public void DashEnabler()
+    {
+        dashEnabled = true;
+    }
+    void StartDash()
+    {
+        isDashing = true;
+        dashDirection = transform.forward; //dash hacia adelante
+        dashTimer = dashDuration;
+        cooldownTimer = dashCooldown;
     }
 
-    //private void Movement()
-    //{
-    //    float inputX = Input.GetAxis("Horizontal");
-    //    float inputY = Input.GetAxis("Vertical");
-    //    Vector3 movement = new Vector3(inputX * speed, inputY * speed);
-    //    rb.velocity = movement;
-    //}
-    
+    void Dash()
+    {
+        float dashSpeed = dashDistance / dashDuration;
+        characterController.Move(dashDirection * dashSpeed * Time.deltaTime);
+
+        dashTimer -= Time.deltaTime;
+        if(dashTimer<=0)
+        {
+            isDashing = false;
+        }
+    }
+
 }

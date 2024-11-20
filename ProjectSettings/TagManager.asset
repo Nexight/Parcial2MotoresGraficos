@@ -8,6 +8,7 @@ TagManager:
   - barrierBuffer
   - enemigo
   - Portal
+  - dashBuff
   layers:
   - Default
   - TransparentFX

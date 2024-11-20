@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class Player_Management : MonoBehaviour
 {
-   
+    private Player_Controller playerController;
+
     public Material baseMaterial;
     public Material newMaterial;
-
     public GameObject MenuGanaste;
 
+    public float intervaloDeActivacion = 1f;
+    private float ultimaActivacion = 0f;
     private bool conBarrera;
-
+    void Start()
+    {
+        playerController = GetComponent<Player_Controller>();
+        
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("barrierBuffer"))
         {
             GetComponent<Renderer>().material = newMaterial;
             conBarrera = true;
+        }
+        if(other.CompareTag("dashBuff"))
+        {
+            playerController.DashEnabler();
         }
         if (other.CompareTag("Portal"))
         {
@@ -30,18 +40,24 @@ public class Player_Management : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.CompareTag("enemigo"))
+        if (Time.time >= ultimaActivacion + intervaloDeActivacion)
         {
-            if(conBarrera)
+            if (collision.collider.CompareTag("enemigo"))
             {
-                conBarrera = false;
-                GetComponent<Renderer>().material = baseMaterial;
-                
-            }
-            else
-            {
-                Destroy(gameObject);
-                
+         
+                if (conBarrera)
+                {
+                    Collider.Destroy(gameObject);
+
+                    conBarrera = false;
+                    GetComponent<Renderer>().material = baseMaterial;
+                }
+                else
+                {
+                    Destroy(gameObject);
+
+                }
+                ultimaActivacion = Time.time;
             }
         }
     }
