@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
         // Move the projectile forward
         transform.position += transform.forward * speed * Time.deltaTime;
     }
-
+   
     void OnCollisionEnter(Collision collision)
     {
        if(collision.collider.CompareTag("Player"))

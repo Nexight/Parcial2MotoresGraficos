@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySlime : MonoBehaviour
 {
+    public GameObject target;
 
     float exponencial = 1;
     void Start()
@@ -19,4 +20,6 @@ public class EnemySlime : MonoBehaviour
         yield return new WaitForSeconds(delay);
         StartCoroutine(Crecer());
     }   
+
+    
 }

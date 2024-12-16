@@ -7,6 +7,8 @@ public class GameManagement : MonoBehaviour
 {
     public GameObject player;
     public GameObject MenuLost;
+
+    public GameObject[] pisos;
     // Start is called before the first frame update
     void Start()
     {
