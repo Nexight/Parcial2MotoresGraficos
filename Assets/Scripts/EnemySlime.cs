@@ -10,7 +10,6 @@ public class EnemySlime : MonoBehaviour
     public Transform[] plataformas;
 
     float exponencial = 1;
-    float delay = 5f;
     float contador = 0f;
 
     void Start()
@@ -43,7 +42,7 @@ public class EnemySlime : MonoBehaviour
 
     void Teletransportacion()
     {
-        Debug.Log("tepeando");
+        /*Debug.Log("tepeando");
         Transform plataformaCercana = plataformas[0];
 
         float distanciaMinima = Vector3.Distance(transform.localPosition, plataformas[0].position);
@@ -51,14 +50,14 @@ public class EnemySlime : MonoBehaviour
         foreach (Transform plataforma in plataformas)
         {
             float distancia = Vector3.Distance(transform.localPosition, plataforma.position);
-            if (distancia<distanciaMinima)
+            if (distancia < distanciaMinima)
             {
                 plataformaCercana = plataforma;
                 distanciaMinima = distancia;
                 Debug.Log("Listo para tepear!");
             }
         }
-        transform.localPosition = plataformaCercana.position;
+        transform.localPosition = plataformaCercana.position;*/
 
         
     }
