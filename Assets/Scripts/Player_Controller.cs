@@ -20,7 +20,7 @@ public class Player_Controller : MonoBehaviour
 
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
-    private CharacterController characterController;
+    public CharacterController characterController;
     private Vector3 dashDirection;
     private float dashTimer = 0f;
     private float cooldownTimer = 0f;

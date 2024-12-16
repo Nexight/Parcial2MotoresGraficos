@@ -9,6 +9,7 @@ TagManager:
   - enemigo
   - Portal
   - dashBuff
+  - Agua
   layers:
   - Default
   - TransparentFX
